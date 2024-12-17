@@ -7,9 +7,15 @@ from datetime import datetime
 from logic import *
 
 import time
+def save_user_name(user_name):
+    with open("current_user.txt", "w") as file:
+        file.write(user_name)
+
 if __name__ == "__main__":
-    user_name = input("Welcome to Blackjack! \nWhat is your name? ")
     
+    user_name = input("Welcome to Blackjack! \nWhat is your name? ")
+    current_user = user_name
+    save_user_name(user_name)
     engine = create_engine("sqlite:///blackjack.db")
     Base.metadata.create_all(engine)
     session = sessionmaker(bind=engine)
@@ -24,8 +30,7 @@ if __name__ == "__main__":
             print("Wrong password")
             exit()
         print(f"Welcome {user_name}!")
-        with open("logs.txt", "a") as file:
-            file.write(f"{user_name} logged in at {datetime.now()}\n")
+        
         
     else:
         print("Hey there! Welcome!!")

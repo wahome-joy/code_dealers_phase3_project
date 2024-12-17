@@ -1,4 +1,5 @@
 import random
+from scores import register_win,register_loss,check_score
 
 def main (name):
     
@@ -94,7 +95,9 @@ def win_lose(dealer_points,player_points):
 
     if dealer_points > 21 or player_points == 21: 
 
-        print ("You win")
+        print (f"Congats {load_current_user()}! You win with {player_points} points")
+        register_win(load_current_user())
+        print (f"Your Total score is {check_score(load_current_user())}")
         start_new_or_quit = input("To play again, type enter: To quit type quit: ")
         if start_new_or_quit == "":
             play_again()
@@ -108,6 +111,8 @@ def win_lose(dealer_points,player_points):
         total_dealer_points = list()
         total_player_points=  list()
         print ("You lose")
+        register_loss(load_current_user())
+        print (f"Your Total score is {check_score(load_current_user())}")
         start_new_or_quit = input("To play again, press enter: To quit type quit: ")
         if start_new_or_quit == "":
             play_again()
@@ -144,3 +149,9 @@ def hit_or_stand():
         deal()
     elif choose_option == "stand":
         stand()
+
+def load_current_user():
+    with open("current_user.txt", "r") as file:
+        user_name = file.read()
+    return user_name
+
