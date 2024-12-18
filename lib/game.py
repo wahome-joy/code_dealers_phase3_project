@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 from helpers import User, Base
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
