@@ -30,7 +30,7 @@ if __name__ == "__main__":
         password = getpass.getpass(f"Good to see you again, {user_name}! Enter your password: ")
         
         # Check if the password is correct
-        if not bcrypt.checkpw(password.encode('utf-8'), user_name_query.password.encode('utf-8')):
+        if not bcrypt.checkpw(password.encode('utf-8'), user_name_query.password):
             print("Wrong password")
             exit()
         print(f"Welcome {user_name}!")
