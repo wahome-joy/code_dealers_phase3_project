@@ -15,7 +15,7 @@ def start_game():
     return 
   
     
-cards =[2,3,4,5,6,7,8,9,10,'J', 'Q', 'K', 'A']
+cards =[2,3,4,5,6,7,8,9,10,'J', 'Q', 'K', 'A',2,3,4,5,6,7,8,9,10,'J', 'Q', 'K', 'A',2,3,4,5,6,7,8,9,10,'J', 'Q', 'K', 'A']
 downside_up_card = "?"
 total_dealer_points = list()
 total_player_points = list()
