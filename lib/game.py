@@ -1,12 +1,11 @@
-#!/usr/bin/env python3
-
 from helpers import User, Base
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from datetime import datetime
-from logic import *
-
 import time
+from logic import *
+import bcrypt
+
 def save_user_name(user_name):
     with open("current_user.txt", "w") as file:
         file.write(user_name)
@@ -25,23 +24,17 @@ if __name__ == "__main__":
     if user_name_query:
         password = input(f"Good to see you again, {user_name}! Enter your password: ")
         
-        query_password = session.query(User.password).filter(User.name == user_name).first()
-        if query_password[0] != password:
+        if not user_name_query.check_password(password):
             print("Wrong password")
             exit()
         print(f"Welcome {user_name}!")
-        
         
     else:
         print("Hey there! Welcome!!")
         password = input("Create a password: ")
         if isinstance(password, str) and (len(password) >= 4 and len(password) <= 20): 
-                   
-            user = User(
-                name = user_name,
-                password = password
-            )
-
+            user = User(name=user_name)
+            user.set_password(password)  # Hash password before storing it
             session.add(user)
             session.commit()
             with open("logs.txt", "a") as file:
