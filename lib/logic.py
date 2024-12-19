@@ -112,14 +112,14 @@ def stand():
 def win_lose(dealer_points, player_points):
     player_name = load_current_user()
     if player_points > 21:
-        console.print(f"[bold red]Congrats! Dealer wins with {dealer_points} points![/bold red]")
+        console.print(f"[bold red] Dealer wins with {dealer_points} points![/bold red]")
     elif dealer_points > 21 or player_points > dealer_points:
         console.print(f"[bold green]Congrats! {player_name} wins with {player_points} points![/bold green]")
         register_win(player_name)
     elif dealer_points == player_points:
         console.print("[bold yellow]It's a tie![/bold yellow]")
     else:
-        console.print(f"[bold red]Congrats! Dealer wins with {dealer_points} points![/bold red]")
+        console.print(f"[bold red] Dealer wins with {dealer_points} points![/bold red]")
         register_loss(player_name)
     start_new_or_quit()
 
